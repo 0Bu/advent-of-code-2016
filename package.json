@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/olbura/advent-of-code-2016/issues"
   },
-  "homepage": "https://github.com/olbura/advent-of-code-2016#readme"
+  "homepage": "https://github.com/olbura/advent-of-code-2016#readme",
+  "dependencies": {
+    "mocha": "^3.2.0"
+  }
 }
