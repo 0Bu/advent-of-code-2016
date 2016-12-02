@@ -1,8 +1,8 @@
 "use strict";
 
 const fs = require('fs'),
-    sep = require('path').sep,
-    input = fs.readFileSync(__dirname + sep + '01.data', 'utf-8');
+      sep = require('path').sep,
+      input = fs.readFileSync(__dirname + sep + '01.data', 'utf-8');
 
 function getMoves() {
     // todo regexp for input /(L|R\d, )./ig
@@ -42,10 +42,11 @@ function distance(coordinates) {
     return Math.abs(coordinates[0]) + Math.abs(coordinates[1]);
 }
 
-let coordinates = go(getMoves());
-console.log('terminal coordinates: ', coordinates);
-console.log('taxicab distance: ', distance(coordinates));
-
+if (!module.parent) {
+    let coordinates = go(getMoves());
+    console.log('terminal coordinates: ', coordinates);
+    console.log('taxicab distance: ', distance(coordinates));
+}
 
 function dejavu(moves, x = 0, y = 0, dir = 'n') {
     let points = [], point;
@@ -80,9 +81,12 @@ function dejavu(moves, x = 0, y = 0, dir = 'n') {
     return point;
 }
 
-let visited = dejavu(getMoves());
-console.log('dejavu coordinates: ', visited);
-console.log('dejavu distance: ', distance(visited));
+if (!module.parent) {
+    let visited = dejavu(getMoves());
+    console.log('dejavu coordinates: ', visited);
+    console.log('dejavu distance: ', distance(visited));
+}
 
 module.exports.go = go;
 module.exports.distance = distance;
+module.exports.dejavu = dejavu;
