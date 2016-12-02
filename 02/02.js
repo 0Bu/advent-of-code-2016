@@ -56,7 +56,7 @@ function bathroom (instructions) {
 }
 
 if (!module.parent) {
-   //console.log('PIN', go(getInstructions()));
+   console.log('PIN', go(getInstructions()));
    console.log('PIN Bathroom', bathroom(getInstructions()));
 }
 
