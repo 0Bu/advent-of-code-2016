@@ -50,27 +50,27 @@ describe('02-2', () => {
             assert.equal(9, underTest.bathroom(['RRRRRRRRRR']));
         });
     });
-    describe('test all boundaries clockwise -> DRDDRDD', () => {
+    describe('test boundaries -> DRDDRDD', () => {
         it('should return D', () => {
             assert.equal('D', underTest.bathroom(['DRDDRDD']));
         });
     });
-    describe('test all boundaries clockwise -> DRDDRDDRRURRR', () => {
+    describe('test boundaries -> DRDDRDDRRURRR', () => {
         it('should return C', () => {
             assert.equal('C', underTest.bathroom(['DRDDRDDRRURRR']));
         });
     });
-    describe('test all boundaries clockwise -> DRDDRDDRRURRRUR', () => {
+    describe('test boundaries -> DRDDRDDRRURRRUR', () => {
         it('should return 9', () => {
             assert.equal('9', underTest.bathroom(['DRDDRDDRRURRRUR']));
         });
     });
-    describe('test all boundaries clockwise -> DRDDRDDRRURRRURLUUUU', () => {
+    describe('test boundaries -> DRDDRDDRRURRRURLUUUU', () => {
         it('should return 4', () => {
             assert.equal('4', underTest.bathroom(['DRDDRDDRRURRRURLUUUU']));
         });
     });
-    describe('test all boundaries clockwise -> DRDDRDDRRURRRURLUUUULUURRLLLLL', () => {
+    describe('test boundaries -> DRDDRDDRRURRRURLUUUULUURRLLLLL', () => {
         it('should return 1', () => {
             assert.equal('1', underTest.bathroom(['DRDDRDDRRURRRURLUUUULUURRLLLLL']));
         });
