@@ -44,7 +44,7 @@ function decode(lines) {
     return lines.map(line => {
         let name = [...line.name].map(c => {
             if (c === '-') return ' ';
-            let code = c.charCodeAt(0) + 343 % 26;
+            let code = c.charCodeAt(0) + line.id % 26;
             if( code > 'z'.charCodeAt(0)) {
                 return String.fromCharCode('a'.charCodeAt(0) + code - 1 - 'z'.charCodeAt(0));
             }
