@@ -12,7 +12,8 @@ function filter(lines) {
     return lines.map(line => {
         let [, name, id, checksum] = line.match(/([a-z-]+)-(\d+)\[([a-z]+)]/);
         let prevChar, prevRate;
-        let token = [...checksum].map((char, index) => {
+        // 11111 if checksum|name is valid
+        let audit = [...checksum].map((char, index) => {
             let token = name.match(new RegExp(`${char}+`, 'g')); // all chars in the name
             if(token) { // found char in str
                 let rate = token.join('').length;
@@ -31,7 +32,7 @@ function filter(lines) {
         // are all of chars in the checmsum valid?
         return {
             name,
-            id: token.join('') === '11111' ? +id : 0
+            id: audit.join('') === '11111' ? +id : 0
         };
     }).filter(line => line.id);
 }
