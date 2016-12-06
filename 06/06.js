@@ -28,7 +28,7 @@ function gram(str, order) {
     return [char, frequency];
 }
 
-// oder === 1 ? 'most frequest letter' : 'less frequent letter'
+// order === 1 ? 'most frequest letter' : 'less frequent letter'
 function message(lines, order) {
     // iterate every row and get the frequent char
     return [...row(lines)].map(line => gram(line, order)[0]).join('');
