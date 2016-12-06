@@ -10,11 +10,4 @@ describe('06', () => {
             assert.equal(3, underTest.gram('aabcddea')[1]);
         });
     });
-    describe('provoke a frequency conflict "aabb"', function() {
-        it('should be a', () => {
-            assert.throws(() => {
-                underTest.gram('aabb')
-            },Error);
-        });
-    });
 });
