@@ -42,9 +42,6 @@ if(!module.parent) {
     console.time('time');
     console.log('the original message that Santa is trying to send is "%s"', message(data(), -1));
     console.timeEnd('time');
-
-    //console.log(gram('aaabbc', 1));
-    console.log(gram('aaabbbbbccccc', -1));
 }
 
 module.exports.gram = gram;
