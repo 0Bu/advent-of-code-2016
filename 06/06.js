@@ -10,7 +10,7 @@ function data() {
 
 // the generator function returns a row every yield as string
 function* row(lines) {
-    for(let i = 0; i < 8; i += 1) {
+    for(let i = 0; i < lines[0].length; i += 1) {
         yield lines.map(x => x.charAt(i)).join('');
     }
 }
