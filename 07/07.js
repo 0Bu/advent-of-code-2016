@@ -56,7 +56,6 @@ function ssl(data) {
     });
 }
 
-
 if(!module.parent) {
     console.log('%d IPs support TLS', tls(data()).length);
     console.log('%d IPs support SSL', ssl(data()).length);
