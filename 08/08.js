@@ -30,7 +30,7 @@ function shift(a, p) {
     return a.splice(a.length - p % a.length, p % a.length).concat(a);
 }
 
-// rotate row or columb as d, i as axis, p as array coordinate
+// rotate row or column as d, i as axis, p as array coordinate
 function rotate([,d,i,p]) {
     if(d === 'row') {
         matrix[i] = shift(matrix[i], p);
