@@ -35,8 +35,7 @@ function rotate([,d,i,p]) {
     if(d === 'row') {
         matrix[i] = shift(matrix[i], p);
     } else if(d === 'column') {
-        shift(matrix.map(y => y[i]), p)
-            .forEach((content,y) => matrix[y][i] = content);
+        shift(matrix.map(y => y[i]), p).forEach((item,y) => matrix[y][i] = item);
     }
 }
 
