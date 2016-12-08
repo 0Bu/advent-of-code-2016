@@ -19,15 +19,18 @@ function fill(c, a = 50, b = 6) {
     }
 }
 
+// display operation and array
 function display(op) {
     if(op) console.log(op);
-    matrix.forEach((y,i) => console.log(y.join('')));
+    matrix.forEach(y => console.log(y.join('')));
 }
 
+// cut off the array a at the position p and append the rest at the begin
 function shift(a, p) {
     return a.splice(a.length - p % a.length, p % a.length).concat(a);
 }
 
+// rotate row or columb as d, i as axis, p as array coordinate
 function rotate([,d,i,p]) {
     if(d === 'row') {
         matrix[i] = shift(matrix[i], p);
