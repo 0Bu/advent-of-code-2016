@@ -10,8 +10,7 @@ function decompress(data) {
     let [,prefix,length,times,tail] = data.match(re);
     let [txt2repeat, rest] = [tail.substr(0, +length), tail.substr(+length)];
     let decompressed = Array(+times + 1).join(txt2repeat);
-    if(rest) return prefix + decompressed + decompress(rest);
-    return prefix + decompressed;
+    return prefix + decompressed + decompress(rest);
 }
 
 function decompress2(data) {
@@ -19,8 +18,7 @@ function decompress2(data) {
     let [,prefix,length,times,tail] = data.match(re);
     let [txt2repeat, rest] = [tail.substr(0, +length), tail.substr(+length)];
     let decompressed = +times * decompress2(txt2repeat);
-    if(rest) return prefix.length + decompressed + decompress2(rest);
-    return prefix.length + decompressed;
+    return prefix.length + decompressed + decompress2(rest);
 }
 
 if(!module.parent) {
