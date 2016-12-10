@@ -3,7 +3,7 @@
 const fs = require('fs'),
     sep = require('path').sep,
     input = fs.readFileSync(__dirname + sep + '08.data', 'utf-8'),
-    matrix = new Array(5);
+    matrix = new Array(6);
 
 function operations() {
     return input.split('\n');
