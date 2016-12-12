@@ -11,22 +11,19 @@ function run(lines) {
     let j = 0;
     for(let i = 0; i < lines.length; i+= 1) {
         let [cmd, x, y] = lines[i].split(' ');
-        // console.log(i+1, lines[i]);
         if(cmd.startsWith('cpy')) registers[index(y)] = value(x);
         if(cmd.startsWith('inc')) registers[index(x)] += 1;
         if(cmd.startsWith('dec')) registers[index(x)] -= 1;
         if(cmd.startsWith('jnz') && value(x)) i += +y - 1;
-        //console.log(j++, registers);
-        //if(j++ > 500) {console.error('endless loop'); return}
     }
 }
 
 if(!module.parent) {
     run(code);
-    console.log('The value of the register a:', registers);
-    registers[2] = 1;
+    console.log('Registers', registers);
+    registers[2] = 1; // c = 1
     run(code);
-    console.log('The value of the register a with c=1:', registers);
+    console.log('Registers with c=1 at start', registers[0], registers[1], registers[2], registers[3]);
 }
 
 module.exports.run = run;
