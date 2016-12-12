@@ -22,7 +22,7 @@ if(!module.parent) {
     console.log('Registers', registers);
     registers[2] = 1; // c = 1
     run(code);
-    console.log('Registers with c=1 at start', registers[0], registers[1], registers[2], registers[3]);
+    console.log('Registers with c=1 at start', registers);
 }
 
 module.exports.run = run;
