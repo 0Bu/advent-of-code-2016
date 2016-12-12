@@ -8,7 +8,6 @@ const fs = require('fs'),
     value = (v) => index(v) !== null ? registers[index(v)] : +v;
 
 function run(lines) {
-    let j = 0;
     for(let i = 0; i < lines.length; i+= 1) {
         let [cmd, x, y] = lines[i].split(' ');
         if(cmd.startsWith('cpy')) registers[index(y)] = value(x);
