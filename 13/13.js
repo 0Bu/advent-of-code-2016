@@ -12,10 +12,10 @@ const chalk = require('chalk'),
 let min = 5000, // random max initial value for min path length
     path = 0, // path length
     locations = new Set(), // part 2, how many location can be reached in 50 steps
-    building = Array(Y).fill(Array(X).fill(null)); // office
+    building = []; // office
 
 function fill() {
-    building = building.map((a,y) => a.map((b,x) => os(x,y) ? '.' : '#'));
+    building = [...Array(Y)].map((a,y) => [...Array(X)].map((b,x) => os(x,y) ? '.' : '#' ));
 }
 
 function display() {
