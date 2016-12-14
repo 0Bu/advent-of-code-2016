@@ -5,8 +5,9 @@ const crypto = require('crypto'),
       keys = [],
       triplets = [],
       quintuplets = [],
+      a2016 = Array(2017).fill(),
       hasher = (s) => crypto.createHash('md5').update(s).digest('hex'),
-      hasher2016 = (s) => Array(2017).fill().reduce(a => hasher(a), s);
+      hasher2016 = (s) => a2016.reduce(a => hasher(a), s);
 
 function generate(s, hash) {
     for(let index = 0; keys.length < 65; index += 1) {
@@ -19,8 +20,7 @@ function generate(s, hash) {
             triplets.push([key, triplet[0][0], index]);
             triplets.forEach(t => {
                 if(!keys.find(k => t[2] === k[2])) {
-                    let key = quintuplets.find(q => q[1] === t[1] && q[2] > t[2] && q[2] - t[2] < 1000);
-                    if(key) keys.push(t);
+                    if(quintuplets.find(q => q[1]===t[1] && q[2]>t[2] && q[2]-t[2]<1000)) keys.push(t);
                 }
             });
         }
