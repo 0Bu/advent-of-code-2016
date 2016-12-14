@@ -4,7 +4,7 @@ const chalk = require('chalk'),
     arrow = chalk.bold.red,
     number = 1362, // magic input
     X = 31*2, // x axis of the building
-    Y = 50, // y --
+    Y = 45, // y --
     binom = (x,y) => x*x + 3*x + 2*x*y + y + y*y,
     ones = (i) => (i).toString(2).match(/1/g).length, // count 1s in bin number
     os = (x, y) => !(ones(binom(x,y) + number) % 2); // open space == 0
@@ -12,16 +12,10 @@ const chalk = require('chalk'),
 let min = 5000, // random max initial value for min path length
     path = 0, // path length
     locations = new Set(), // part 2, how many location can be reached in 50 steps
-    building = []; // office
+    building = Array(Y).fill(Array(X).fill(null)); // office
 
 function fill() {
-    for(let y = 0; y < Y; y += 1) {
-        let line = [];
-        building.push(line);
-        for(let x = 0; x < X; x += 1) {
-            line.push(os(x,y) ? '.' : '#︎');
-        }
-    }
+    building = building.map((a,y) => a.map((b,x) => os(x,y) ? '.' : '#'));
 }
 
 function display() {
