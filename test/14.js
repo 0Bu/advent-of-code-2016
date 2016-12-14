@@ -7,9 +7,9 @@ describe('14', () => {
             assert.equal('577571be4de9dcce85a041ba0410f29f', underTest.hasher('abc0'));
         });
     });
-    describe('hash2016 of abc0', function() {
+    describe('hash2017 of abc0', function() {
         it('should be a107ff634856bb300138cac6568c0f24', () => {
-            assert.equal('a107ff634856bb300138cac6568c0f24', underTest.hasher2016('abc0'));
+            assert.equal('a107ff634856bb300138cac6568c0f24', underTest.hasher2017('abc0'));
         });
     });
 });

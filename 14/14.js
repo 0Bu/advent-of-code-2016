@@ -5,9 +5,9 @@ const crypto = require('crypto'),
       keys = [],
       triplets = [],
       quintuplets = [],
-      a2016 = Array(2017).fill(),
+      a2017 = Array(2017).fill(),
       hasher = (s) => crypto.createHash('md5').update(s).digest('hex'),
-      hasher2016 = (s) => a2016.reduce(a => hasher(a), s);
+      hasher2017 = (s) => a2017.reduce(a => hasher(a), s);
 
 function generate(s, hash) {
     for(let index = 0; keys.length < 65; index += 1) {
@@ -33,10 +33,11 @@ if(!module.parent) {
     console.log(`the index produces the 64th one-time pad key is ${keys[63][2]}`);
 
     keys.length = triplets.length = quintuplets.length = 0;
-    generate(salt, hasher2016);
+    generate(salt, hasher2017);
     console.log('found keys=%d, triplets=%d, quintuplets=%d', keys.length, triplets.length, quintuplets.length);
-    console.log(`the index produces the 64th one-time pad key is ${keys[63][2]}`);
+    console.log(`the index produces the 64th one-time pad key is ${keys[64][2]}`);
+    keys.forEach((k,i) => console.log(k, i));
 }
 
 module.exports.hasher = hasher;
-module.exports.hasher2016 = hasher2016;
+module.exports.hasher2017 = hasher2017;
