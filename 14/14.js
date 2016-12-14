@@ -14,29 +14,26 @@ function generate(s, hash) {
             triplet = key.match(/([a-z0-9])\1{2}/g),
             quintuplet = key.match(/([a-z0-9])\1{4}/g);
 
+        if(quintuplet) quintuplets.push([key, quintuplet[0][0], index]);
         if(triplet) {
             triplets.push([key, triplet[0][0], index]);
             triplets.forEach(t => {
                 if(!keys.find(k => t[2] === k[2])) {
                     let key = quintuplets.find(q => q[1] === t[1] && q[2] > t[2] && q[2] - t[2] < 1000);
-                    if(key) keys.push(t)
+                    if(key) keys.push(t);
                 }
             });
         }
-        if(quintuplet) quintuplets.push([key, quintuplet[0][0], index]);
     }
 }
 
 if(!module.parent) {
-    console.time('time');
     generate(salt, hasher);
-    console.timeEnd('time');
     console.log('found keys=%d, triplets=%d, quintuplets=%d', keys.length, triplets.length, quintuplets.length);
     console.log(`the index produces the 64th one-time pad key is ${keys[63][2]}`);
 
-    console.time('time');
+    keys.length = triplets.length = quintuplets.length = 0;
     generate(salt, hasher2016);
-    console.timeEnd('time');
     console.log('found keys=%d, triplets=%d, quintuplets=%d', keys.length, triplets.length, quintuplets.length);
     console.log(`the index produces the 64th one-time pad key is ${keys[63][2]}`);
 }
