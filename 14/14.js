@@ -29,14 +29,11 @@ function generate(s, hash) {
 
 if(!module.parent) {
     generate(salt, hasher);
-    console.log('found keys=%d, triplets=%d, quintuplets=%d', keys.length, triplets.length, quintuplets.length);
     console.log(`the index produces the 64th one-time pad key is ${keys[63][2]}`);
 
     keys.length = triplets.length = quintuplets.length = 0;
     generate(salt, hasher2017);
-    console.log('found keys=%d, triplets=%d, quintuplets=%d', keys.length, triplets.length, quintuplets.length);
-    console.log(`the index produces the 64th one-time pad key is ${keys[64][2]}`);
-    keys.forEach((k,i) => console.log(k, i));
+    console.log(`the index produces the 64th with key stretching one-time pad key is ${keys[64][2]}`);
 }
 
 module.exports.hasher = hasher;
