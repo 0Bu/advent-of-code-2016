@@ -11,8 +11,7 @@ function checksum(i) {
 
 function calculate(state, size) {
     while((state = generate(state)).length <= size);
-    state = state.substr(0, size);
-    return checksum(state);
+    return checksum(state.substr(0, size));
 }
 
 if(!module.parent) {
