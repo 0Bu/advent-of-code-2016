@@ -7,17 +7,17 @@ const fs = require('fs'),
 
 const trap = (r,x) => ['^^.','.^^','^..','..^'].includes((r[x-1]||'.') + r[x] + (r[x+1]||'.')),
       row = (prev) => [...prev].map((r,i) => trap(prev, i) ? '^':'.').join(''),
-      generate = (s) => { while(tiles.length < s) tiles.push(row(tiles[tiles.length -1])) },
+      generate = (s) => { while(tiles.length < s) tiles.push(row(tiles[tiles.length-1])) },
       safe = () => tiles.map(y => y.match(/\./g).length).reduce((a,b) => a+b);
 
 if(!module.parent) {
     tiles.push(input);
     generate(40);
-    console.log('safe titles in 40 rows', safe());
+    console.log('safe tiles in 40 rows', safe());
     tiles.length = 0;
     tiles.push(input);
     generate(400000);
-    console.log('safe titles in 400000 rows', safe());
+    console.log('safe tiles in 400000 rows', safe());
 }
 
 module.exports.trap = trap;
