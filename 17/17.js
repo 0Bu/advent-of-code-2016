@@ -14,8 +14,6 @@ const building =
 const crypto = require('crypto'),
       md5 = (s) => crypto.createHash('md5').update(s).digest('hex'),
       moves = (hash) => [...hash].map(h => 'bcdef'.includes(h)), // [up,down,left,right]
-      shortest = () => route.reduce((a,b) => a.length<b.length ? a:b),
-      longest = () => route.reduce((a,b) => a.length>b.length ? a:b),
       route = [],
       passcode = 'pxxbnzuo';
 
@@ -30,8 +28,8 @@ function go(y,x,path='') {
 
 if(!module.parent) {
     go(1,1);
-    console.log('shortest path:', shortest());
-    console.log('longest path length:', longest().length);
+    console.log('shortest path:', route.reduce((a,b) => a.length<b.length ? a:b));
+    console.log('longest path length:', route.reduce((a,b) => a.length>b.length ? a:b).length);
 }
 
 module.exports.moves = moves;
