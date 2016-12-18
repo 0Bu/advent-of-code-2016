@@ -19,7 +19,6 @@ const crypto = require('crypto'),
       route = [],
       passcode = 'pxxbnzuo';
 
-
 function go(y,x,path='') {
     let m =  moves(md5(passcode+path).substr(0,4));
     if(building[y][x] === 'V') { route.push(path); return; }
@@ -31,8 +30,8 @@ function go(y,x,path='') {
 
 if(!module.parent) {
     go(1,1);
-    console.log('shortest path: ', shortest());
-    console.log('longest path length: ', longest().length);
+    console.log('shortest path:', shortest());
+    console.log('longest path length:', longest().length);
 }
 
 module.exports.moves = moves;
