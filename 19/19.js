@@ -1,8 +1,5 @@
 "use strict";
 
-const chalk = require('chalk'),
-      r = chalk.red;
-
 // part 1
 let elves = Array(3018458).fill().map((e,i) => i+1);
 
