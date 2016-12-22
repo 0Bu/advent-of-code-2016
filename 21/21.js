@@ -36,12 +36,10 @@ function move(s,x,y) {
 function operation(cmd, pass, unscramble = false) {
       if(cmd.startsWith('swap position')) {
             let [,x,y] = cmd.match(/swap position (\d+) with position (\d+)/);
-            if(unscramble) return swap_position(pass,+y,+x);
             return swap_position(pass,+x,+y);
       }
       if(cmd.startsWith('swap letter')) {
             let [,a,b] = cmd.match(/swap letter (\w) with letter (\w)/);
-            if(unscramble) return swap_letter(pass,b,a);
             return swap_letter(pass,a,b);
       }
       if(/rotate (left|right)/.test(cmd)) {
@@ -61,7 +59,6 @@ function operation(cmd, pass, unscramble = false) {
       }
       if(cmd.startsWith('reverse positions')) {
             let [,x,y] = cmd.match(/reverse positions (\d+) through (\d+)/);
-            if(unscramble) return reverse(pass,+y,+x);
             return reverse(pass,+x,+y);
       }
       if(cmd.startsWith('move position')) {
