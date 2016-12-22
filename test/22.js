@@ -6,7 +6,7 @@ describe('22', () => {
                  '/dev/grid/node-x0-y1     86T   10T    76T   75%',
                  '/dev/grid/node-x0-y2     88T   73T    15T   82%'];
 
-    let nodes = underTest.nodes(input);
+    let nodes = underTest.nodes(underTest.lines(input));
 
     describe('parse input of nodes', function() {
         it('should return an array of objects', () => {
