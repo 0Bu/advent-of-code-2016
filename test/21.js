@@ -88,6 +88,11 @@ describe('21', () => {
             assert.equal('bcdea', underTest.operation('rotate left 1 step', 'abcde'));
         });
     });
+    describe('rotate right 1 step of abcde', function() {
+        it('should be eabcd', () => {
+            assert.equal('eabcd', underTest.operation('rotate right 1 step', 'abcde'));
+        });
+    });
     describe('move position 1 to position 4', function() {
         it('should be bdeac', () => {
             assert.equal('bdeac', underTest.operation('move position 1 to position 4', 'bcdea'));

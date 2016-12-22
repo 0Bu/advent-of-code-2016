@@ -25,52 +25,58 @@ function rotate(s,c) {
       return rotate_right(s, 1 + p + (p>3 ? 1:0));
 }
 function reverse(s,x,y) {
-      return s.slice(0,x) + s.slice(x,y+1).split('').reverse().join('') + s.slice(y+1);
+      let [a,b] = [min(x,y), max(x,y)];
+      return s.slice(0,a) + s.slice(a,b+1).split('').reverse().join('') + s.slice(b+1);
 }
 function move(s,x,y) {
       if(x<y) return s.slice(0,x) + s.slice(x+1,y+1) + s.slice(x,x+1) + s.slice(y+1);
       if(x>y) return s.slice(0,y) + s.slice(x,x+1) + s.slice(y,x) + s.slice(x+1);
       return s;
 }
-function operation(cmd, pass) {
+function operation(cmd, pass, unscramble = false) {
       if(cmd.startsWith('swap position')) {
             let [,x,y] = cmd.match(/swap position (\d+) with position (\d+)/);
+            if(unscramble) return swap_position(pass,+y,+x);
             return swap_position(pass,+x,+y);
       }
       if(cmd.startsWith('swap letter')) {
             let [,a,b] = cmd.match(/swap letter (\w) with letter (\w)/);
+            if(unscramble) return swap_letter(pass,b,a);
             return swap_letter(pass,a,b);
       }
       if(/rotate (left|right)/.test(cmd)) {
             let [,dir,x] = cmd.match(/rotate (left|right) (\d+)/);
-            if(dir==='right') rotate_right(pass, +x);
+            if(unscramble) return dir === 'right' ? rotate_left(pass,+x) : rotate_right(pass, +x);
+            if(dir === 'right') return rotate_right(pass, +x);
             return rotate_left(pass,+x);
       }
       if(cmd.startsWith('rotate based')) {
             let [,c] = cmd.match(/rotate based on position of letter (\w)/);
+            if(unscramble) {
+                  let i = pass.length;
+                  while(pass !== rotate(rotate_left(pass, i), c)) i -= 1;
+                  return rotate_left(pass, i);
+            }
             return rotate(pass,c);
       }
       if(cmd.startsWith('reverse positions')) {
             let [,x,y] = cmd.match(/reverse positions (\d+) through (\d+)/);
+            if(unscramble) return reverse(pass,+y,+x);
             return reverse(pass,+x,+y);
       }
       if(cmd.startsWith('move position')) {
             let [,x,y] = cmd.match(/move position (\d+) to position (\d+)/);
+            if(unscramble) return move(pass,+y,+x);
             return move(pass,+x,+y);
       }
 }
-function generate(operations, pass) {
-      for(let cmd of operations) {
-            let p = operation(cmd, pass);
-            console.log(pass,p,cmd);
-            console.log('01234567 01234567');
-            pass = p;
-      }
-      return pass;
-}
+
+const generate = (operations, pass) => { operations.forEach(cmd => pass = operation(cmd, pass)); return pass; },
+      unscramble = (operations, pass) => { operations.forEach(cmd => pass = operation(cmd, pass, true)); return pass; }
 
 if(!module.parent) {
       console.log('the result of scrambling abcdefgh:', generate(input, 'abcdefgh'));
+      console.log('the un-scrambled version of the scrambled password fbgdceah:', unscramble(input.reverse(), 'fbgdceah'));
 }
 
 module.exports.swap_position = swap_position;
