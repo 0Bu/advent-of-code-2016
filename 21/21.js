@@ -72,19 +72,21 @@ function operation(cmd, pass, unscramble = false) {
 }
 
 const generate = (operations, pass) => { operations.forEach(cmd => pass = operation(cmd, pass)); return pass; },
-      unscramble = (operations, pass) => { operations.forEach(cmd => pass = operation(cmd, pass, true)); return pass; }
+      unscramble = (operations, pass) => { operations.forEach(cmd => pass = operation(cmd, pass, true)); return pass; };
 
 if(!module.parent) {
       console.log('the result of scrambling abcdefgh:', generate(input, 'abcdefgh'));
       console.log('the un-scrambled version of the scrambled password fbgdceah:', unscramble(input.reverse(), 'fbgdceah'));
 }
 
-module.exports.swap_position = swap_position;
-module.exports.swap_letter = swap_letter;
-module.exports.rotate_left = rotate_left;
-module.exports.rotate_right = rotate_right;
-module.exports.rotate = rotate;
-module.exports.reverse = reverse;
-module.exports.move = move;
-module.exports.operation = operation;
-module.exports.generate = generate;
+module.exports = {
+      swap_position,
+      swap_letter,
+      rotate_left,
+      rotate_right,
+      rotate,
+      reverse,
+      move,
+      operation,
+      generate
+};
